@@ -7,7 +7,7 @@ An answer generation system using T5
 System DiagramCore Components
 
 1. Initialization
-2. 
+   
 def __init__(self):
     self.model_name = 't5-small'
     self.tokenizer = T5Tokenizer.from_pretrained(self.model_name)
@@ -17,8 +17,8 @@ The system initializes with two primary models:
 T5-small: A smaller version of the T5 model for generating answers
 paraphrase-MiniLM-L6-v2: A sentence transformer model for encoding text into meaningful vectors
 
-3. Dataset Preparation
-4. 
+2. Dataset Preparation
+   
 def prepare_dataset(self, data: List[Dict[str, str]]):
     self.answers = [item['answer'] for item in data]
     self.answer_embeddings = []
@@ -33,6 +33,7 @@ Stores both answers and their embeddings for quick retrieval
 How the System Works
 
 1. Question Processing
+   
 When a user submits a question, the system follows these steps:
 Embedding Generation: The question is converted into a vector representation using the same sentence transformer model used for the answers.
 Semantic Search: The system finds the most relevant stored answer by:
@@ -40,7 +41,9 @@ Computing cosine similarity between the question embedding and all answer embedd
 Selecting the answer with the highest similarity score
 
 Context Formation: The selected answer becomes the context for T5 to generate a final response.
+
 2. Answer Generation
+   
 def get_answer(self, question: str) -> str:
     # ... semantic search logic ...
     input_text = f"Given the context, what is the answer to the question: {question} Context: {context}"
