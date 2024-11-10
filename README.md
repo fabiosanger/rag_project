@@ -1,10 +1,13 @@
 System Architecture Overview
+
 The implementation consists of a SimpleQASystem class that orchestrates two main components:
 A semantic search system using Sentence Transformers
 An answer generation system using T5
 
 System DiagramCore Components
+
 1. Initialization
+2. 
 def __init__(self):
     self.model_name = 't5-small'
     self.tokenizer = T5Tokenizer.from_pretrained(self.model_name)
@@ -14,7 +17,8 @@ The system initializes with two primary models:
 T5-small: A smaller version of the T5 model for generating answers
 paraphrase-MiniLM-L6-v2: A sentence transformer model for encoding text into meaningful vectors
 
-2. Dataset Preparation
+3. Dataset Preparation
+4. 
 def prepare_dataset(self, data: List[Dict[str, str]]):
     self.answers = [item['answer'] for item in data]
     self.answer_embeddings = []
@@ -27,6 +31,7 @@ Creates embeddings for each answer using the sentence transformer
 Stores both answers and their embeddings for quick retrieval
 
 How the System Works
+
 1. Question Processing
 When a user submits a question, the system follows these steps:
 Embedding Generation: The question is converted into a vector representation using the same sentence transformer model used for the answers.
@@ -54,6 +59,7 @@ early_stopping=True: Stops generation when all beams reach an end token
 no_repeat_ngram_size=2: Prevents repetition of bigrams
 
 3. Answer Cleaning
+
 def clean_answer(self, answer: str) -> str:
     words = answer.split()
     cleaned_words = []
@@ -67,6 +73,7 @@ Capitalizes the first letter of the answer
 Removes extra whitespace
 
 Performance Considerations
+
 Memory Management:
 
 The system explicitly uses CPU to avoid memory issues
@@ -74,11 +81,13 @@ Embeddings are converted to CPU tensors when needed
 Input length is limited to 512 tokens
 
 Error Handling:
+
 Comprehensive try-except blocks throughout the code
 Meaningful error messages for debugging
 Validation checks for uninitialized components
 
 Usage Example
+
 # Initialize system
 qa_system = SimpleQASystem()
 # Prepare sample data
@@ -90,18 +99,22 @@ data = [
 qa_system.prepare_dataset(data)
 # Get answer
 answer = qa_system.get_answer("What is the capital of France?")
+
 Limitations and Potential Improvements
+
 Scalability:
 
 The current implementation keeps all embeddings in memory
 Could be improved with vector databases for large-scale applications
 
 Answer Quality:
+
 Relies heavily on the quality of the provided answer dataset
 Limited by the context window of T5-small
 Could benefit from answer validation or confidence scoring
 
 Performance:
+
 Using CPU only might be slower for large-scale applications
 Could be optimized with batch processing
 Could implement caching for frequently asked questions
