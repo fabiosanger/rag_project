@@ -2,7 +2,7 @@ import os
 # Set tokenizers parallelism before importing libraries
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-import torch
+
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from typing import List, Dict
 import numpy as np
