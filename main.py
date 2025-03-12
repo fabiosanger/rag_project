@@ -129,7 +129,8 @@ def main():
         data = [
             {"question": "What is the capital of France?", "answer": "The capital of France is Paris."},
             {"question": "What is the largest planet?", "answer": "The largest planet is Jupiter."},
-            {"question": "Who wrote '1984'?", "answer": "George Orwell wrote '1984'."}
+            {"question": "Who wrote '1984'?", "answer": "George Orwell wrote '1984'."},
+            {"question": "When EPAM was established?", "answer": "EPAM was established in 1993'."}
         ]
 
         # Initialize system
