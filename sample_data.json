@@ -1,0 +1,74 @@
+[
+  {
+    "question": "What is machine learning?",
+    "answer": "Machine learning is a subset of artificial intelligence that enables computers to learn and make decisions from data without being explicitly programmed. It uses algorithms to identify patterns in data and make predictions or decisions based on those patterns."
+  },
+  {
+    "question": "How does neural network work?",
+    "answer": "Neural networks are computing systems inspired by biological brains, consisting of interconnected nodes (neurons) that process information through weighted connections. They learn by adjusting these weights based on training data to minimize prediction errors."
+  },
+  {
+    "question": "What is deep learning?",
+    "answer": "Deep learning is a subset of machine learning that uses neural networks with multiple layers (hence 'deep') to model and understand complex patterns in data. It can automatically learn hierarchical representations from raw data."
+  },
+  {
+    "question": "What is natural language processing?",
+    "answer": "Natural language processing (NLP) is a field of AI that focuses on enabling computers to understand, interpret, and generate human language. It includes tasks like text classification, sentiment analysis, machine translation, and question answering."
+  },
+  {
+    "question": "What is computer vision?",
+    "answer": "Computer vision is a field of AI that enables computers to interpret and understand visual information from the world, such as images and videos. It includes tasks like object detection, image classification, and facial recognition."
+  },
+  {
+    "question": "What is reinforcement learning?",
+    "answer": "Reinforcement learning is a type of machine learning where an agent learns to make decisions by taking actions in an environment to maximize cumulative rewards. It learns through trial and error, receiving feedback in the form of rewards or penalties."
+  },
+  {
+    "question": "What is supervised learning?",
+    "answer": "Supervised learning is a type of machine learning where the model learns from labeled training data. The algorithm learns to map input features to known output labels, enabling it to make predictions on new, unseen data."
+  },
+  {
+    "question": "What is unsupervised learning?",
+    "answer": "Unsupervised learning is a type of machine learning where the model finds hidden patterns in data without any labeled outputs. It's used for clustering, dimensionality reduction, and discovering underlying structures in data."
+  },
+  {
+    "question": "What is a transformer model?",
+    "answer": "Transformer models are a type of neural network architecture that revolutionized natural language processing. They use attention mechanisms to process sequences of data, allowing them to capture long-range dependencies and relationships in text."
+  },
+  {
+    "question": "What is the difference between AI and ML?",
+    "answer": "Artificial Intelligence (AI) is the broader field of creating machines that can perform tasks requiring human intelligence. Machine Learning (ML) is a subset of AI that focuses specifically on algorithms that can learn from data without being explicitly programmed."
+  },
+  {
+    "question": "What is the capital of France?",
+    "answer": "The capital of France is Paris."
+  },
+  {
+    "question": "What is the largest planet?",
+    "answer": "The largest planet is Jupiter."
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "answer": "The capital of Germany is Berlin."
+  },
+  {
+    "question": "What is the largest country in the world?",
+    "answer": "The largest country in the world is Russia."
+  },
+  {
+    "question": "What is the capital of Japan?",
+    "answer": "The capital of Japan is Tokyo."
+  },
+  {
+    "question": "What is the largest city in the world?",
+    "answer": "The largest city in the world is Tokyo."
+  },
+  {
+    "question": "What is the capital of China?",
+    "answer": "The capital of China is Beijing."
+  },
+  {
+    "question": "What is the largest country in Europe?",
+    "answer": "The largest country in Europe is Russia."
+  }
+]
