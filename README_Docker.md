@@ -180,7 +180,7 @@ docker logs -f <container_id>
 docker exec -it <container_id> /bin/bash
 
 # Run Python commands
-docker exec -it <container_id> poetry run python -c "print('Hello from container')"
+docker exec -it <container_id> uv run python -c "print('Hello from container')"
 ```
 
 ## Production Deployment
@@ -206,5 +206,5 @@ rag_project/
 ├── rag_project/           # Application code
 ├── streamlit_app.py       # Streamlit application
 ├── sample_data.json       # Sample Q&A data
-└── pyproject.toml         # Poetry dependencies
+└── pyproject.toml         # Project dependencies
 ```

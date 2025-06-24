@@ -17,7 +17,6 @@ class SimpleQASystem:
         try:
             # Use T5 for answer generation - try different possible paths
             possible_paths = [
-                'models/models--t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4',
                 'models/models-t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4',
                 '/home/fg12/repos/rag_project/models-t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4',
                 't5-small'  # Fallback to download from HuggingFace
