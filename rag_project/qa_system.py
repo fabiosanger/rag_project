@@ -16,7 +16,7 @@ class SimpleQASystem:
         """Initialize QA system using T5"""
         try:
             # Use T5 for answer generation
-            model_path = '/home/fg12/repos/rag_project/models-t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4'
+            model_path = 'models/models-t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4'
 
             # Extract a nice display name
             if 't5-small' in model_path:
