@@ -9,19 +9,23 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
-# Check if pip is available
-if ! command -v pip3 &> /dev/null; then
-    echo "❌ pip3 is not installed. Please install pip first."
+# Check if uv is available
+if ! command -v uv &> /dev/null; then
+    echo "❌ uv is not installed. Please install uv first."
+    echo "   pip install uv"
     exit 1
 fi
 
-# Install dependencies if requirements file exists
-if [ -f "requirements_streamlit.txt" ]; then
-    echo "📦 Installing dependencies..."
-    pip3 install -r requirements_streamlit.txt
+# Set uv virtual environment path
+export UV_VENV_PATH="/home/fg12/envs/"
+
+# Install dependencies if pyproject.toml exists
+if [ -f "pyproject.toml" ]; then
+    echo "📦 Installing dependencies with uv..."
+    uv sync
 else
-    echo "⚠️  requirements_streamlit.txt not found. Installing basic dependencies..."
-    pip3 install streamlit torch transformers sentence-transformers scikit-learn numpy pandas
+    echo "⚠️  pyproject.toml not found. Installing basic dependencies..."
+    uv add streamlit torch transformers sentence-transformers scikit-learn numpy pandas
 fi
 
 # Check if streamlit app exists
@@ -36,4 +40,4 @@ echo "📱 The app will open in your browser at http://localhost:8501"
 echo "🛑 Press Ctrl+C to stop the application"
 echo ""
 
-streamlit run streamlit_app.py --server.port 8501 --server.address localhost
+uv run streamlit run streamlit_app.py --server.port 8501 --server.address localhost
