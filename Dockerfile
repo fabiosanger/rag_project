@@ -4,10 +4,6 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
-ENV POETRY_VERSION=1.7.1
-ENV POETRY_HOME="/opt/poetry"
-ENV POETRY_VENV_IN_PROJECT=1
-ENV POETRY_CACHE_DIR='/var/cache/pypoetry'
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -16,21 +12,22 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
-ENV PATH="${POETRY_HOME}/bin:$PATH"
+# Install uv
+RUN pip install uv
 
 # Set working directory
 WORKDIR /app
 
-# Copy Poetry configuration files
-COPY pyproject.toml poetry.lock poetry.toml ./
+# Copy uv configuration files
+COPY pyproject.toml ./
 
-# Install dependencies
-RUN poetry install --no-dev --no-interaction --no-ansi
+# Create virtual environment and install dependencies
+RUN uv venv && \
+    uv pip compile pyproject.toml --extra dev -o requirements.txt && \
+    uv pip install --system -r requirements.txt
 
 # Copy the local T5 model to the container
-COPY models/ /app/models/
+COPY models/models-t5-small /app/models/models-t5-small
 
 # Copy application code
 COPY rag_project/ ./rag_project/
@@ -48,4 +45,4 @@ USER app
 EXPOSE 8501
 
 # Set the default command to run Streamlit
-CMD ["poetry", "run", "streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["uv", "run", "streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
