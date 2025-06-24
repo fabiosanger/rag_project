@@ -24,11 +24,11 @@ chmod +x build_docker.sh
 
 ### Option 3: Command Line Interface
 ```bash
-# Install with Poetry
-poetry install
+# Install with uv
+uv sync
 
 # Run the CLI
-poetry run rag-qa
+uv run rag-qa
 ```
 
 ## 🏗️ System Architecture
