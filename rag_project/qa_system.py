@@ -15,8 +15,35 @@ class SimpleQASystem:
     def __init__(self):
         """Initialize QA system using T5"""
         try:
-            # Use T5 for answer generation
-            model_path = 'models/models-t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4'
+            # Use T5 for answer generation - try different possible paths
+            possible_paths = [
+                'models/models--t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4',
+                'models/models-t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4',
+                '/home/fg12/repos/rag_project/models-t5-small/snapshots/df1b051c49625cf57a3d0d8d3863ed4d13564fe4',
+                't5-small'  # Fallback to download from HuggingFace
+            ]
+
+            model_path = None
+            for path in possible_paths:
+                try:
+                    if path == 't5-small':
+                        # Try to load from HuggingFace Hub
+                        self.tokenizer = T5Tokenizer.from_pretrained(path, legacy=False)
+                        self.model = T5ForConditionalGeneration.from_pretrained(path)
+                        model_path = path
+                        break
+                    else:
+                        # Try to load from local path
+                        self.tokenizer = T5Tokenizer.from_pretrained(path, legacy=False)
+                        self.model = T5ForConditionalGeneration.from_pretrained(path)
+                        model_path = path
+                        break
+                except Exception as e:
+                    print(f"Failed to load model from {path}: {e}")
+                    continue
+
+            if model_path is None:
+                raise ValueError("Could not load T5 model from any available path")
 
             # Extract a nice display name
             if 't5-small' in model_path:
@@ -28,8 +55,7 @@ class SimpleQASystem:
             else:
                 self.model_name = 'T5 Model'
 
-            self.tokenizer = T5Tokenizer.from_pretrained(model_path, legacy=False)
-            self.model = T5ForConditionalGeneration.from_pretrained(model_path)
+            print(f"✅ Loaded model from: {model_path}")
 
             # Detect and set optimal device (GPU if available, otherwise CPU)
             if torch.cuda.is_available():
